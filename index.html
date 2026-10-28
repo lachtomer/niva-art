@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="he" dir="rtl">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>TBD</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <h1>TBD</h1>
+  <p class="bio">TBD</p>
+  <p class="contact">TBD</p>
+
+  <div class="grid">
+    <figure>
+      <button type="button"><img src="images/01.jpg" alt="הנדריקס"></button>
+      <figcaption>הנדריקס</figcaption>
+    </figure>
+    <figure>
+      <button type="button"><img src="images/02.jpg" alt="סטיבי ריי ואן"></button>
+      <figcaption>סטיבי ריי ואן</figcaption>
+    </figure>
+    <figure>
+      <button type="button"><img src="images/03.jpg" alt="איימי"></button>
+      <figcaption>איימי</figcaption>
+    </figure>
+    <figure>
+      <button type="button"><img src="images/04.jpg" alt="איימי וויינהאוס"></button>
+      <figcaption>איימי וויינהאוס</figcaption>
+    </figure>
+    <figure>
+      <button type="button"><img src="images/05.jpg" alt="איינשטיין"></button>
+      <figcaption>איינשטיין</figcaption>
+    </figure>
+    <figure>
+      <button type="button"><img src="images/06.jpg" alt="בלאקמור"></button>
+      <figcaption>בלאקמור</figcaption>
+    </figure>
+    <figure>
+      <button type="button"><img src="images/07.jpg" alt="גון לורד"></button>
+      <figcaption>גון לורד</figcaption>
+    </figure>
+    <figure>
+      <button type="button"><img src="images/08.jpg" alt="גיטריסט"></button>
+      <figcaption>גיטריסט</figcaption>
+    </figure>
+    <figure>
+      <button type="button"><img src="images/09.jpg" alt="גיטריסט"></button>
+      <figcaption>גיטריסט</figcaption>
+    </figure>
+    <figure>
+      <button type="button"><img src="images/10.jpg" alt="ג'ים מוריסון"></button>
+      <figcaption>ג'ים מוריסון</figcaption>
+    </figure>
+    <figure>
+      <button type="button"><img src="images/11.jpg" alt="ג'ניס ג'ופלין"></button>
+      <figcaption>ג'ניס ג'ופלין</figcaption>
+    </figure>
+    <figure>
+      <button type="button"><img src="images/12.jpg" alt="דויד בואי"></button>
+      <figcaption>דויד בואי</figcaption>
+    </figure>
+    <figure>
+      <button type="button"><img src="images/13.jpg" alt="דויד גילמור"></button>
+      <figcaption>דויד גילמור</figcaption>
+    </figure>
+    <figure>
+      <button type="button"><img src="images/14.jpg" alt="החיפושיות"></button>
+      <figcaption>החיפושיות</figcaption>
+    </figure>
+    <figure>
+      <button type="button"><img src="images/15.jpg" alt="הטוב הרע והמכוער"></button>
+      <figcaption>הטוב הרע והמכוער</figcaption>
+    </figure>
+    <figure>
+      <button type="button"><img src="images/16.jpg" alt="הנדריקס"></button>
+      <figcaption>הנדריקס</figcaption>
+    </figure>
+    <figure>
+      <button type="button"><img src="images/17.jpg" alt="הנדריקס"></button>
+      <figcaption>הנדריקס</figcaption>
+    </figure>
+    <figure>
+      <button type="button"><img src="images/18.jpg" alt="זוהר"></button>
+      <figcaption>זוהר</figcaption>
+    </figure>
+    <figure>
+      <button type="button"><img src="images/19.jpg" alt="זילבר"></button>
+      <figcaption>זילבר</figcaption>
+    </figure>
+    <figure>
+      <button type="button"><img src="images/20.jpg" alt="חיפושיות"></button>
+      <figcaption>חיפושיות</figcaption>
+    </figure>
+    <figure>
+      <button type="button"><img src="images/21.jpg" alt="לנון"></button>
+      <figcaption>לנון</figcaption>
+    </figure>
+    <figure>
+      <button type="button"><img src="images/22.jpg" alt="מטליקה"></button>
+      <figcaption>מטליקה</figcaption>
+    </figure>
+    <figure>
+      <button type="button"><img src="images/23.jpg" alt="סנטנה"></button>
+      <figcaption>סנטנה</figcaption>
+    </figure>
+    <figure>
+      <button type="button"><img src="images/24.jpg" alt="עמיר בניון"></button>
+      <figcaption>עמיר בניון</figcaption>
+    </figure>
+    <figure>
+      <button type="button"><img src="images/25.jpg" alt="פסנתרן"></button>
+      <figcaption>פסנתרן</figcaption>
+    </figure>
+    <figure>
+      <button type="button"><img src="images/26.jpg" alt="קווין"></button>
+      <figcaption>קווין</figcaption>
+    </figure>
+  </div>
+
+  <div id="lightbox" hidden>
+    <img alt="">
+  </div>
+
+  <script>
+    const lightbox = document.getElementById("lightbox");
+    const big = lightbox.querySelector("img");
+
+    function openLightbox(src, alt) {
+      big.src = src;
+      big.alt = alt;
+      lightbox.hidden = false;
+    }
+
+    function closeLightbox() {
+      lightbox.hidden = true;
+      big.removeAttribute("src");
+      big.alt = "";
+    }
+
+    document.querySelector(".grid").addEventListener("click", (event) => {
+      const img = event.target.closest("img");
+      if (!img) return;
+      openLightbox(img.currentSrc || img.src, img.alt);
+    });
+
+    lightbox.addEventListener("click", closeLightbox);
+
+    document.addEventListener("keydown", (event) => {
+      if (event.key === "Escape" && !lightbox.hidden) closeLightbox();
+    });
+  </script>
+</body>
+</html>
