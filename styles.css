@@ -175,6 +175,10 @@ body[data-style="editorial"] .style-btn.is-active {
   transition: background 0.15s ease, border-color 0.15s ease, color 0.15s ease;
 }
 
+.lang-toggle {
+  margin-inline-start: auto;
+}
+
 .lang-toggle:hover,
 .contact-btn:hover,
 .works-jump-btn:hover {
