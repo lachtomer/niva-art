@@ -45,8 +45,7 @@ body[data-style="editorial"] {
 body[data-style="editorial"] .top-bar {
   max-width: 100%;
   background: var(--bg-band);
-  border-bottom: 1px solid var(--border-subtle);
-  padding: 1rem 2.5rem;
+  padding: 1.25rem 2.5rem 0;
 }
 
 .style-switcher {
@@ -137,7 +136,7 @@ body[data-style="editorial"] .top-bar {
 body[data-style="editorial"] .bio-section {
   background: var(--bg-band);
   border-bottom: 1px solid var(--border-subtle);
-  padding: 4rem 2rem 4.5rem;
+  padding: 2.5rem 2rem 4.5rem;
   margin-bottom: 5rem;
 }
 
@@ -175,10 +174,15 @@ body[data-style="editorial"] h1 {
 /* First .bio paragraph ("אמן חיתוכי פורניר על עץ." / "Wood Veneer Artist") */
 .bio-section .bio:first-of-type {
   margin-bottom: 2rem;
-  font-size: 0.98rem;
-  letter-spacing: 0.12em;
-  text-transform: uppercase;
+  font-size: 1rem;
+  letter-spacing: 0.02em;
   color: var(--text-secondary);
+}
+
+html[lang="en"] .bio-section .bio:first-of-type {
+  font-size: 0.9rem;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
 }
 
 .bio-section .bio:first-of-type::after {
@@ -207,6 +211,7 @@ body[data-style="editorial"] .bio-section .bio:nth-of-type(2) {
 .grid {
   display: grid;
   grid-template-columns: repeat(2, 1fr);
+  grid-auto-flow: dense;
   gap: 4.5rem 3.5rem;
   align-items: end;
   max-width: 70rem;
@@ -220,7 +225,6 @@ body[data-style="editorial"] .grid {
   gap: 6.5rem 4.75rem;
   padding: 0 2.5rem;
   margin-bottom: 7rem;
-  align-items: center;
 }
 
 figure {
@@ -238,9 +242,12 @@ figure.wide {
   margin: 0.5rem auto;
 }
 
-/* Style 2 (Editorial): Every 5th piece + wide pieces act as large gallery centerpieces */
+/* Style 2 (Editorial): Selected large-scale works + wide pieces act as gallery centerpieces */
 body[data-style="editorial"] figure.wide,
-body[data-style="editorial"] figure:nth-child(5n + 1) {
+body[data-style="editorial"] figure:nth-child(2),
+body[data-style="editorial"] figure:nth-child(6),
+body[data-style="editorial"] figure:nth-child(15),
+body[data-style="editorial"] figure:nth-child(20) {
   grid-column: 1 / -1;
   max-width: 52rem;
   width: 100%;
@@ -381,6 +388,7 @@ figcaption .price[hidden] {
 .lightbox-close,
 .lightbox-nav {
   position: fixed;
+  direction: ltr;
   border: 0;
   background: transparent;
   color: rgba(234, 228, 220, 0.75);
@@ -442,7 +450,10 @@ figcaption .price[hidden] {
 
   figure.wide,
   body[data-style="editorial"] figure.wide,
-  body[data-style="editorial"] figure:nth-child(5n + 1) {
+  body[data-style="editorial"] figure:nth-child(2),
+  body[data-style="editorial"] figure:nth-child(6),
+  body[data-style="editorial"] figure:nth-child(15),
+  body[data-style="editorial"] figure:nth-child(20) {
     margin: 0;
   }
 
