@@ -10,6 +10,50 @@ body {
   line-height: 1.7;
 }
 
+.top-bar {
+  max-width: 68rem;
+  margin: 1rem auto 0;
+  padding: 0 1rem;
+  display: flex;
+  justify-content: flex-end;
+}
+
+.lang-toggle {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.45rem;
+  padding: 0.35rem 0.7rem;
+  border: 1px solid #ddd;
+  border-radius: 6px;
+  background: #fafafa;
+  color: #222;
+  font-family: inherit;
+  font-size: 0.9rem;
+  cursor: pointer;
+  transition: background 0.15s ease, border-color 0.15s ease;
+}
+
+.lang-toggle:hover {
+  background: #f0f0f0;
+  border-color: #bbb;
+}
+
+.lang-toggle .flag {
+  display: inline-flex;
+  align-items: center;
+  border: 1px solid rgba(0, 0, 0, 0.12);
+  border-radius: 2px;
+  overflow: hidden;
+}
+
+.lang-toggle .flag[hidden] {
+  display: none;
+}
+
+.lang-toggle .flag svg {
+  display: block;
+}
+
 h1,
 .bio,
 .contact {
@@ -22,7 +66,7 @@ h1,
 }
 
 h1 {
-  margin-top: 2rem;
+  margin-top: 1rem;
   margin-bottom: 1rem;
   font-size: 2rem;
   font-weight: 500;
@@ -67,11 +111,27 @@ figcaption {
   text-align: center;
 }
 
+figcaption .title {
+  display: block;
+}
+
 figcaption .size {
   display: block;
   margin-top: 0.15rem;
   font-size: 0.85rem;
   color: #666;
+}
+
+figcaption .price {
+  display: block;
+  margin-top: 0.15rem;
+  font-size: 0.9rem;
+  font-weight: 500;
+  color: #333;
+}
+
+figcaption .price[hidden] {
+  display: none;
 }
 
 #lightbox {

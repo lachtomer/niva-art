@@ -7,118 +7,264 @@
   <link rel="stylesheet" href="styles.css">
 </head>
 <body>
-  <h1>דוד סויסה</h1>
-  <p class="bio">אמן חיתוכי פורניר על עץ.</p>
-  <p class="bio">בעולמו האמנותי של דוד סויסה, השבור הופך לשלם, והחומר מקבל קצב, נפח וחיים חדשים.<br>
-  בעקבות פציעה בעינו מפגיעת צלף בעת שירותי בצה"ל, שהובילה לאובדן הראייה התלת-ממדית, הפכה האמנות עבורו לכלי של תיקון ופיצוי ויזואלי. מתוך האתגר הפיזי נולדה שפה אמנותית ייחודית ומרהיבה: דרך עבודה סיזיפית ודיוק כירורגי בחיתוכי פורניר (קליפת העץ הדקה), האמן מפרק את המשטח ומעניק לו נפח מחדש. כל עבודה יוצרת אשליית תלת-ממד מהפנטת המפצה על היכולת שאבדה, ומזמינה את הצופה לחוות עומק ומורכבות שנולדו מתוך התבוננות מעמיקה ומלאכת יד מוקפדת.<br>
-  עבור האמן, העץ הוא חומר חי, נושם ובעל זיכרון, המשמש כתיבת תהודה מושלמת לסיפורים ולדמויות שהשפיעו על חייו.<br>
-  היצירות המוצגות באתר הן עדות לעוצמתה של העין הפנימית ולכולת האנושית לברוא עומק חדש.</p>
-  <p class="bio">אתם מוזמנים לסייר בגלריה, לגלות את השכבות, ולהביט מקרוב באשליית הנפח המרתקת הנוצרת בין סיבי העץ.</p>
+  <div class="top-bar">
+    <button id="lang-toggle" class="lang-toggle" type="button" aria-label="Switch to English">
+      <span class="flag flag-en" aria-hidden="true">
+        <svg viewBox="0 0 60 30" width="24" height="16">
+          <clipPath id="s"><path d="M0,0 v30 h60 v-30 z"/></clipPath>
+          <clipPath id="t"><path d="M30,15 h30 v15 z v15 h-30 z h-30 v-15 z v-15 h30 z"/></clipPath>
+          <g clip-path="url(#s)">
+            <path d="M0,0 v30 h60 v-30 z" fill="#012169"/>
+            <path d="M0,0 L60,30 M60,0 L0,30" stroke="#fff" stroke-width="6"/>
+            <path d="M0,0 L60,30 M60,0 L0,30" clip-path="url(#t)" stroke="#C8102E" stroke-width="4"/>
+            <path d="M30,0 v30 M0,15 h60" stroke="#fff" stroke-width="10"/>
+            <path d="M30,0 v30 M0,15 h60" stroke="#C8102E" stroke-width="6"/>
+          </g>
+        </svg>
+      </span>
+      <span class="flag flag-he" aria-hidden="true" hidden>
+        <svg viewBox="0 0 220 160" width="24" height="16">
+          <rect width="220" height="160" fill="#fff"/>
+          <rect y="15" width="220" height="25" fill="#0038b8"/>
+          <rect y="120" width="220" height="25" fill="#0038b8"/>
+          <g fill="none" stroke="#0038b8" stroke-width="5.5">
+            <polygon points="110,52 134,94 86,94"/>
+            <polygon points="110,108 134,66 86,66"/>
+          </g>
+        </svg>
+      </span>
+      <span class="lang-label">English</span>
+    </button>
+  </div>
 
-    <div class="grid">
+  <div id="bio-he">
+    <h1>דוד סויסה</h1>
+    <p class="bio">אמן חיתוכי פורניר על עץ.</p>
+    <p class="bio">בעולמו האמנותי של דוד סויסה, השבור הופך לשלם, והחומר מקבל קצב, נפח וחיים חדשים.<br>
+    בעקבות פציעה בעינו מפגיעת צלף בעת שירותי בצה"ל, שהובילה לאובדן הראייה התלת-ממדית, הפכה האמנות עבורו לכלי של תיקון ופיצוי ויזואלי. מתוך האתגר הפיזי נולדה שפה אמנותית ייחודית ומרהיבה: דרך עבודה סיזיפית ודיוק כירורגי בחיתוכי פורניר (קליפת העץ הדקה), האמן מפרק את המשטח ומעניק לו נפח מחדש. כל עבודה יוצרת אשליית תלת-ממד מהפנטת המפצה על היכולת שאבדה, ומזמינה את הצופה לחוות עומק ומורכבות שנולדו מתוך התבוננות מעמיקה ומלאכת יד מוקפדת.<br>
+    עבור האמן, העץ הוא חומר חי, נושם ובעל זיכרון, המשמש כתיבת תהודה מושלמת לסיפורים ולדמויות שהשפיעו על חייו.<br>
+    היצירות המוצגות באתר הן עדות לעוצמתה של העין הפנימית ולכולת האנושית לברוא עומק חדש.</p>
+    <p class="bio">אתם מוזמנים לסייר בגלריה, לגלות את השכבות, ולהביט מקרוב באשליית הנפח המרתקת הנוצרת בין סיבי העץ.</p>
+  </div>
+
+  <div id="bio-en" hidden>
+    <h1>David Suissa</h1>
+    <p class="bio">Wood Veneer Artist</p>
+    <p class="bio">In David Suissa’s art, broken pieces become whole, and wood takes on rhythm, depth, and new life.<br>
+    After losing sight in one eye to a sniper’s bullet during his military service in the IDF—and with it, his 3D vision—art became a way to heal and rebuild his sense of depth. Out of this challenge came a unique style: through patient work and surgical precision, he cuts thin sheets of natural wood veneer, breaks down the flat surface, and builds it back up with volume. Each piece creates a striking 3D illusion that makes up for the depth vision he lost, inviting the viewer to see layers of detail created through close observation and careful handwork.<br>
+    For David, wood is a living, breathing material with a memory of its own—the perfect medium to tell the stories and portray the figures that shaped his life.<br>
+    The works on this site show the power of the inner eye and the human ability to create new depth.</p>
+    <p class="bio">You are welcome to explore the gallery, discover the layers, and look closely at the 3D effect created within the grain of the wood.</p>
+  </div>
+
+  <div class="grid">
     <figure>
-      <button type="button"><img src="images/01.jpg" alt="הנדריקס"></button>
-      <figcaption>הנדריקס<span class="size">30×24.5 ס"מ</span></figcaption>
+      <button type="button"><img src="images/01.jpg" alt="הנדריקס" data-alt-he="הנדריקס" data-alt-en="Hendrix"></button>
+      <figcaption>
+        <span class="title" data-he="הנדריקס" data-en="Hendrix">הנדריקס</span>
+        <span class="size" data-he="30×24.5 ס&quot;מ" data-en="30×24.5 cm">30×24.5 ס"מ</span>
+        <span class="price" data-he="" data-en="" hidden></span>
+      </figcaption>
     </figure>
     <figure>
-      <button type="button"><img src="images/02.jpg" alt="סטיבי ריי ואן"></button>
-      <figcaption>סטיבי ריי ואן<span class="size">62×43.5 ס"מ</span></figcaption>
+      <button type="button"><img src="images/02.jpg" alt="סטיבי ריי ואן" data-alt-he="סטיבי ריי ואן" data-alt-en="Stevie Ray Vaughan"></button>
+      <figcaption>
+        <span class="title" data-he="סטיבי ריי ואן" data-en="Stevie Ray Vaughan">סטיבי ריי ואן</span>
+        <span class="size" data-he="62×43.5 ס&quot;מ" data-en="62×43.5 cm">62×43.5 ס"מ</span>
+        <span class="price" data-he="" data-en="" hidden></span>
+      </figcaption>
     </figure>
     <figure>
-      <button type="button"><img src="images/03.jpg" alt="איימי"></button>
-      <figcaption>איימי<span class="size">45×26.5 ס"מ</span></figcaption>
+      <button type="button"><img src="images/03.jpg" alt="איימי" data-alt-he="איימי" data-alt-en="Amy"></button>
+      <figcaption>
+        <span class="title" data-he="איימי" data-en="Amy">איימי</span>
+        <span class="size" data-he="45×26.5 ס&quot;מ" data-en="45×26.5 cm">45×26.5 ס"מ</span>
+        <span class="price" data-he="" data-en="" hidden></span>
+      </figcaption>
     </figure>
     <figure>
-      <button type="button"><img src="images/04.jpg" alt="איימי וויינהאוס"></button>
-      <figcaption>איימי וויינהאוס<span class="size">42.5×33 ס"מ</span></figcaption>
+      <button type="button"><img src="images/04.jpg" alt="איימי וויינהאוס" data-alt-he="איימי וויינהאוס" data-alt-en="Amy Winehouse"></button>
+      <figcaption>
+        <span class="title" data-he="איימי וויינהאוס" data-en="Amy Winehouse">איימי וויינהאוס</span>
+        <span class="size" data-he="42.5×33 ס&quot;מ" data-en="42.5×33 cm">42.5×33 ס"מ</span>
+        <span class="price" data-he="" data-en="" hidden></span>
+      </figcaption>
     </figure>
     <figure>
-      <button type="button"><img src="images/05.jpg" alt="איינשטיין"></button>
-      <figcaption>איינשטיין<span class="size">31×32.5 ס"מ</span></figcaption>
+      <button type="button"><img src="images/05.jpg" alt="איינשטיין" data-alt-he="איינשטיין" data-alt-en="Einstein"></button>
+      <figcaption>
+        <span class="title" data-he="איינשטיין" data-en="Einstein">איינשטיין</span>
+        <span class="size" data-he="31×32.5 ס&quot;מ" data-en="31×32.5 cm">31×32.5 ס"מ</span>
+        <span class="price" data-he="" data-en="" hidden></span>
+      </figcaption>
     </figure>
     <figure>
-      <button type="button"><img src="images/06.jpg" alt="ריצ'י בלאקמור"></button>
-      <figcaption>ריצ'י בלאקמור<span class="size">59×45 ס"מ</span></figcaption>
+      <button type="button"><img src="images/06.jpg" alt="ריצ'י בלאקמור" data-alt-he="ריצ'י בלאקמור" data-alt-en="Ritchie Blackmore"></button>
+      <figcaption>
+        <span class="title" data-he="ריצ'י בלאקמור" data-en="Ritchie Blackmore">ריצ'י בלאקמור</span>
+        <span class="size" data-he="59×45 ס&quot;מ" data-en="59×45 cm">59×45 ס"מ</span>
+        <span class="price" data-he="" data-en="" hidden></span>
+      </figcaption>
     </figure>
     <figure>
-      <button type="button"><img src="images/07.jpg" alt="ג'ון לורד"></button>
-      <figcaption>ג'ון לורד<span class="size">44.5×29.5 ס"מ</span></figcaption>
+      <button type="button"><img src="images/07.jpg" alt="ג'ון לורד" data-alt-he="ג'ון לורד" data-alt-en="Jon Lord"></button>
+      <figcaption>
+        <span class="title" data-he="ג'ון לורד" data-en="Jon Lord">ג'ון לורד</span>
+        <span class="size" data-he="44.5×29.5 ס&quot;מ" data-en="44.5×29.5 cm">44.5×29.5 ס"מ</span>
+        <span class="price" data-he="" data-en="" hidden></span>
+      </figcaption>
     </figure>
     <figure>
-      <button type="button"><img src="images/08.jpg" alt="גיטריסט"></button>
-      <figcaption>גיטריסט<span class="size">55.5×38 ס"מ</span></figcaption>
+      <button type="button"><img src="images/08.jpg" alt="גיטריסט" data-alt-he="גיטריסט" data-alt-en="Guitarist"></button>
+      <figcaption>
+        <span class="title" data-he="גיטריסט" data-en="Guitarist">גיטריסט</span>
+        <span class="size" data-he="55.5×38 ס&quot;מ" data-en="55.5×38 cm">55.5×38 ס"מ</span>
+        <span class="price" data-he="" data-en="" hidden></span>
+      </figcaption>
     </figure>
     <figure>
-      <button type="button"><img src="images/09.jpg" alt="גיטריסט"></button>
-      <figcaption>גיטריסט<span class="size">57×38 ס"מ</span></figcaption>
+      <button type="button"><img src="images/09.jpg" alt="גיטריסט" data-alt-he="גיטריסט" data-alt-en="Guitarist"></button>
+      <figcaption>
+        <span class="title" data-he="גיטריסט" data-en="Guitarist">גיטריסט</span>
+        <span class="size" data-he="57×38 ס&quot;מ" data-en="57×38 cm">57×38 ס"מ</span>
+        <span class="price" data-he="" data-en="" hidden></span>
+      </figcaption>
     </figure>
     <figure>
-      <button type="button"><img src="images/10.jpg" alt="ג'ים מוריסון"></button>
-      <figcaption>ג'ים מוריסון<span class="size">49×34.5 ס"מ</span></figcaption>
+      <button type="button"><img src="images/10.jpg" alt="ג'ים מוריסון" data-alt-he="ג'ים מוריסון" data-alt-en="Jim Morrison"></button>
+      <figcaption>
+        <span class="title" data-he="ג'ים מוריסון" data-en="Jim Morrison">ג'ים מוריסון</span>
+        <span class="size" data-he="49×34.5 ס&quot;מ" data-en="49×34.5 cm">49×34.5 ס"מ</span>
+        <span class="price" data-he="" data-en="" hidden></span>
+      </figcaption>
     </figure>
     <figure>
-      <button type="button"><img src="images/11.jpg" alt="ג'ניס ג'ופלין"></button>
-      <figcaption>ג'ניס ג'ופלין<span class="size">44×42 ס"מ</span></figcaption>
+      <button type="button"><img src="images/11.jpg" alt="ג'ניס ג'ופלין" data-alt-he="ג'ניס ג'ופלין" data-alt-en="Janis Joplin"></button>
+      <figcaption>
+        <span class="title" data-he="ג'ניס ג'ופלין" data-en="Janis Joplin">ג'ניס ג'ופלין</span>
+        <span class="size" data-he="44×42 ס&quot;מ" data-en="44×42 cm">44×42 ס"מ</span>
+        <span class="price" data-he="" data-en="" hidden></span>
+      </figcaption>
     </figure>
     <figure>
-      <button type="button"><img src="images/12.jpg" alt="דויד בואי"></button>
-      <figcaption>דויד בואי<span class="size">31×33 ס"מ</span></figcaption>
+      <button type="button"><img src="images/12.jpg" alt="דויד בואי" data-alt-he="דויד בואי" data-alt-en="David Bowie"></button>
+      <figcaption>
+        <span class="title" data-he="דויד בואי" data-en="David Bowie">דויד בואי</span>
+        <span class="size" data-he="31×33 ס&quot;מ" data-en="31×33 cm">31×33 ס"מ</span>
+        <span class="price" data-he="" data-en="" hidden></span>
+      </figcaption>
     </figure>
     <figure>
-      <button type="button"><img src="images/13.jpg" alt="דויד גילמור"></button>
-      <figcaption>דויד גילמור<span class="size">59×35.5 ס"מ</span></figcaption>
+      <button type="button"><img src="images/13.jpg" alt="דויד גילמור" data-alt-he="דויד גילמור" data-alt-en="David Gilmour"></button>
+      <figcaption>
+        <span class="title" data-he="דויד גילמור" data-en="David Gilmour">דויד גילמור</span>
+        <span class="size" data-he="59×35.5 ס&quot;מ" data-en="59×35.5 cm">59×35.5 ס"מ</span>
+        <span class="price" data-he="" data-en="" hidden></span>
+      </figcaption>
     </figure>
     <figure>
-      <button type="button"><img src="images/14.jpg" alt="החיפושיות"></button>
-      <figcaption>החיפושיות<span class="size">34×67 ס"מ</span></figcaption>
+      <button type="button"><img src="images/14.jpg" alt="החיפושיות" data-alt-he="החיפושיות" data-alt-en="The Beatles"></button>
+      <figcaption>
+        <span class="title" data-he="החיפושיות" data-en="The Beatles">החיפושיות</span>
+        <span class="size" data-he="34×67 ס&quot;מ" data-en="34×67 cm">34×67 ס"מ</span>
+        <span class="price" data-he="" data-en="" hidden></span>
+      </figcaption>
     </figure>
     <figure>
-      <button type="button"><img src="images/15.jpg" alt="הטוב הרע והמכוער"></button>
-      <figcaption>הטוב הרע והמכוער<span class="size">62×41 ס"מ</span></figcaption>
+      <button type="button"><img src="images/15.jpg" alt="הטוב הרע והמכוער" data-alt-he="הטוב הרע והמכוער" data-alt-en="The Good, the Bad and the Ugly"></button>
+      <figcaption>
+        <span class="title" data-he="הטוב הרע והמכוער" data-en="The Good, the Bad and the Ugly">הטוב הרע והמכוער</span>
+        <span class="size" data-he="62×41 ס&quot;מ" data-en="62×41 cm">62×41 ס"מ</span>
+        <span class="price" data-he="" data-en="" hidden></span>
+      </figcaption>
     </figure>
     <figure>
-      <button type="button"><img src="images/16.jpg" alt="הנדריקס"></button>
-      <figcaption>הנדריקס<span class="size">21×15 ס"מ</span></figcaption>
+      <button type="button"><img src="images/16.jpg" alt="הנדריקס" data-alt-he="הנדריקס" data-alt-en="Hendrix"></button>
+      <figcaption>
+        <span class="title" data-he="הנדריקס" data-en="Hendrix">הנדריקס</span>
+        <span class="size" data-he="21×15 ס&quot;מ" data-en="21×15 cm">21×15 ס"מ</span>
+        <span class="price" data-he="" data-en="" hidden></span>
+      </figcaption>
     </figure>
     <figure>
-      <button type="button"><img src="images/17.jpg" alt="הנדריקס"></button>
-      <figcaption>הנדריקס<span class="size">29.5×23.5 ס"מ</span></figcaption>
+      <button type="button"><img src="images/17.jpg" alt="הנדריקס" data-alt-he="הנדריקס" data-alt-en="Hendrix"></button>
+      <figcaption>
+        <span class="title" data-he="הנדריקס" data-en="Hendrix">הנדריקס</span>
+        <span class="size" data-he="29.5×23.5 ס&quot;מ" data-en="29.5×23.5 cm">29.5×23.5 ס"מ</span>
+        <span class="price" data-he="" data-en="" hidden></span>
+      </figcaption>
     </figure>
     <figure>
-      <button type="button"><img src="images/18.jpg" alt="זוהר"></button>
-      <figcaption>זוהר<span class="size">41×35 ס"מ</span></figcaption>
+      <button type="button"><img src="images/18.jpg" alt="זוהר" data-alt-he="זוהר" data-alt-en="Zohar"></button>
+      <figcaption>
+        <span class="title" data-he="זוהר" data-en="Zohar">זוהר</span>
+        <span class="size" data-he="41×35 ס&quot;מ" data-en="41×35 cm">41×35 ס"מ</span>
+        <span class="price" data-he="" data-en="" hidden></span>
+      </figcaption>
     </figure>
     <figure>
-      <button type="button"><img src="images/19.jpg" alt="זילבר"></button>
-      <figcaption>זילבר<span class="size">40.5×35 ס"מ</span></figcaption>
+      <button type="button"><img src="images/19.jpg" alt="זילבר" data-alt-he="זילבר" data-alt-en="Zilber"></button>
+      <figcaption>
+        <span class="title" data-he="זילבר" data-en="Zilber">זילבר</span>
+        <span class="size" data-he="40.5×35 ס&quot;מ" data-en="40.5×35 cm">40.5×35 ס"מ</span>
+        <span class="price" data-he="" data-en="" hidden></span>
+      </figcaption>
     </figure>
     <figure>
-      <button type="button"><img src="images/20.jpg" alt="ביטלס"></button>
-      <figcaption>ביטלס<span class="size">54.5×40 ס"מ</span></figcaption>
+      <button type="button"><img src="images/20.jpg" alt="ביטלס" data-alt-he="ביטלס" data-alt-en="Beatles"></button>
+      <figcaption>
+        <span class="title" data-he="ביטלס" data-en="Beatles">ביטלס</span>
+        <span class="size" data-he="54.5×40 ס&quot;מ" data-en="54.5×40 cm">54.5×40 ס"מ</span>
+        <span class="price" data-he="" data-en="" hidden></span>
+      </figcaption>
     </figure>
     <figure>
-      <button type="button"><img src="images/21.jpg" alt="לנון"></button>
-      <figcaption>לנון<span class="size">47×31 ס"מ</span></figcaption>
+      <button type="button"><img src="images/21.jpg" alt="לנון" data-alt-he="לנון" data-alt-en="Lennon"></button>
+      <figcaption>
+        <span class="title" data-he="לנון" data-en="Lennon">לנון</span>
+        <span class="size" data-he="47×31 ס&quot;מ" data-en="47×31 cm">47×31 ס"מ</span>
+        <span class="price" data-he="" data-en="" hidden></span>
+      </figcaption>
     </figure>
     <figure>
-      <button type="button"><img src="images/22.jpg" alt="מטליקה"></button>
-      <figcaption>מטליקה<span class="size">56.5×35.5 ס"מ</span></figcaption>
+      <button type="button"><img src="images/22.jpg" alt="מטליקה" data-alt-he="מטליקה" data-alt-en="Metallica"></button>
+      <figcaption>
+        <span class="title" data-he="מטליקה" data-en="Metallica">מטליקה</span>
+        <span class="size" data-he="56.5×35.5 ס&quot;מ" data-en="56.5×35.5 cm">56.5×35.5 ס"מ</span>
+        <span class="price" data-he="" data-en="" hidden></span>
+      </figcaption>
     </figure>
     <figure>
-      <button type="button"><img src="images/23.jpg" alt="סנטנה"></button>
-      <figcaption>סנטנה<span class="size">42×33.5 ס"מ</span></figcaption>
+      <button type="button"><img src="images/23.jpg" alt="סנטנה" data-alt-he="סנטנה" data-alt-en="Santana"></button>
+      <figcaption>
+        <span class="title" data-he="סנטנה" data-en="Santana">סנטנה</span>
+        <span class="size" data-he="42×33.5 ס&quot;מ" data-en="42×33.5 cm">42×33.5 ס"מ</span>
+        <span class="price" data-he="" data-en="" hidden></span>
+      </figcaption>
     </figure>
     <figure>
-      <button type="button"><img src="images/24.jpg" alt="עמיר בניון"></button>
-      <figcaption>עמיר בניון<span class="size">44×30 ס"מ</span></figcaption>
+      <button type="button"><img src="images/24.jpg" alt="עמיר בניון" data-alt-he="עמיר בניון" data-alt-en="Amir Benayoun"></button>
+      <figcaption>
+        <span class="title" data-he="עמיר בניון" data-en="Amir Benayoun">עמיר בניון</span>
+        <span class="size" data-he="44×30 ס&quot;מ" data-en="44×30 cm">44×30 ס"מ</span>
+        <span class="price" data-he="" data-en="" hidden></span>
+      </figcaption>
     </figure>
     <figure>
-      <button type="button"><img src="images/25.jpg" alt="פסנתרן"></button>
-      <figcaption>פסנתרן<span class="size">38×56 ס"מ</span></figcaption>
+      <button type="button"><img src="images/25.jpg" alt="פסנתרן" data-alt-he="פסנתרן" data-alt-en="Pianist"></button>
+      <figcaption>
+        <span class="title" data-he="פסנתרן" data-en="Pianist">פסנתרן</span>
+        <span class="size" data-he="38×56 ס&quot;מ" data-en="38×56 cm">38×56 ס"מ</span>
+        <span class="price" data-he="" data-en="" hidden></span>
+      </figcaption>
     </figure>
     <figure>
-      <button type="button"><img src="images/26.jpg" alt="קווין"></button>
-      <figcaption>קווין<span class="size">49.5×30 ס"מ</span></figcaption>
+      <button type="button"><img src="images/26.jpg" alt="קווין" data-alt-he="קווין" data-alt-en="Queen"></button>
+      <figcaption>
+        <span class="title" data-he="קווין" data-en="Queen">קווין</span>
+        <span class="size" data-he="49.5×30 ס&quot;מ" data-en="49.5×30 cm">49.5×30 ס"מ</span>
+        <span class="price" data-he="" data-en="" hidden></span>
+      </figcaption>
     </figure>
   </div>
 
@@ -129,6 +275,47 @@
   <script>
     const lightbox = document.getElementById("lightbox");
     const big = lightbox.querySelector("img");
+    const langToggle = document.getElementById("lang-toggle");
+    const bioHe = document.getElementById("bio-he");
+    const bioEn = document.getElementById("bio-en");
+    const flagEn = langToggle.querySelector(".flag-en");
+    const flagHe = langToggle.querySelector(".flag-he");
+    const langLabel = langToggle.querySelector(".lang-label");
+
+    let currentLang = "he";
+
+    function setLanguage(lang) {
+      currentLang = lang;
+      const isEn = lang === "en";
+
+      document.documentElement.lang = isEn ? "en" : "he";
+      document.documentElement.dir = isEn ? "ltr" : "rtl";
+      document.title = isEn ? "David Suissa" : "דוד סויסה";
+
+      bioHe.hidden = isEn;
+      bioEn.hidden = !isEn;
+
+      flagEn.hidden = isEn;
+      flagHe.hidden = !isEn;
+      langLabel.textContent = isEn ? "עברית" : "English";
+      langToggle.setAttribute("aria-label", isEn ? "החלף לעברית" : "Switch to English");
+
+      document.querySelectorAll("[data-he][data-en]").forEach((el) => {
+        const val = el.getAttribute(isEn ? "data-en" : "data-he");
+        el.textContent = val;
+        if (el.classList.contains("price")) {
+          el.hidden = !val;
+        }
+      });
+
+      document.querySelectorAll("img[data-alt-he][data-alt-en]").forEach((img) => {
+        img.alt = img.getAttribute(isEn ? "data-alt-en" : "data-alt-he");
+      });
+    }
+
+    langToggle.addEventListener("click", () => {
+      setLanguage(currentLang === "he" ? "en" : "he");
+    });
 
     function openLightbox(src, alt) {
       big.src = src;
