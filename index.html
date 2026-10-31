@@ -9,7 +9,7 @@
   <link href="https://fonts.googleapis.com/css2?family=Assistant:wght@300;400;500&family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400&family=Frank+Ruhl+Libre:wght@400;500&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="styles.css">
 </head>
-<body data-style="nocturne">
+<body data-style="editorial">
   <div class="top-bar">
     <a id="contact-link" class="contact-btn" href="mailto:nivaviola@gmail.com" aria-label="יצירת קשר">
       <svg class="contact-icon" viewBox="0 0 24 18" width="22" height="16" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
@@ -22,8 +22,8 @@
 
     <div class="style-switcher" role="group" aria-label="Style Switcher">
       <button type="button" class="style-btn" data-target-style="classic" data-he="עיצוב 1" data-en="Style 1">עיצוב 1</button>
-      <button type="button" class="style-btn" data-target-style="editorial" data-he="עיצוב 2" data-en="Style 2">עיצוב 2</button>
-      <button type="button" class="style-btn is-active" data-target-style="nocturne" data-he="עיצוב 3" data-en="Style 3">עיצוב 3</button>
+      <button type="button" class="style-btn is-active" data-target-style="editorial" data-he="עיצוב 2" data-en="Style 2">עיצוב 2</button>
+      <button type="button" class="style-btn" data-target-style="nocturne" data-he="עיצוב 3" data-en="Style 3">עיצוב 3</button>
     </div>
 
     <button id="lang-toggle" class="lang-toggle" type="button" aria-label="Switch to English">
@@ -75,7 +75,15 @@
     <p class="bio">You are welcome to explore the gallery, discover the layers, and look closely at the 3D effect created within the grain of the wood.</p>
   </div>
 
-  <div class="grid">
+  <section class="gallery-stage" aria-label="Artworks Gallery">
+    <button type="button" class="gallery-nav gallery-prev" id="gallery-prev" aria-label="Previous artwork">
+      <svg viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+        <polyline points="15 18 9 12 15 6"></polyline>
+      </svg>
+    </button>
+
+    <div class="gallery-viewport" id="gallery-viewport">
+      <div class="grid" id="gallery-track">
     <figure>
       <button type="button"><img src="images/01.jpg" alt="הנדריקס" data-alt-he="הנדריקס" data-alt-en="Hendrix"></button>
       <figcaption>
@@ -284,7 +292,22 @@
         <span class="price" data-he="" data-en="" hidden></span>
       </figcaption>
     </figure>
-  </div>
+      </div>
+    </div>
+
+    <button type="button" class="gallery-nav gallery-next" id="gallery-next" aria-label="Next artwork">
+      <svg viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+        <polyline points="9 18 15 12 9 6"></polyline>
+      </svg>
+    </button>
+
+    <div class="gallery-meta">
+      <div class="gallery-counter" id="gallery-counter" aria-live="polite">01 / 26</div>
+      <div class="gallery-progress" aria-hidden="true">
+        <div class="gallery-progress-bar" id="gallery-progress-bar"></div>
+      </div>
+    </div>
+  </section>
 
   <div id="lightbox" role="dialog" aria-modal="true" hidden>
     <button type="button" class="lightbox-close" aria-label="Close">×</button>
@@ -306,6 +329,12 @@
     const prevBtn = lightbox.querySelector(".lightbox-prev");
     const nextBtn = lightbox.querySelector(".lightbox-next");
     const figures = Array.from(document.querySelectorAll(".grid figure"));
+    const galleryTrack = document.getElementById("gallery-track");
+    const galleryViewport = document.getElementById("gallery-viewport");
+    const galleryPrevBtn = document.getElementById("gallery-prev");
+    const galleryNextBtn = document.getElementById("gallery-next");
+    const galleryCounter = document.getElementById("gallery-counter");
+    const galleryProgressBar = document.getElementById("gallery-progress-bar");
     const langToggle = document.getElementById("lang-toggle");
     const bioHe = document.getElementById("bio-he");
     const bioEn = document.getElementById("bio-en");
@@ -316,6 +345,33 @@
 
     let currentLang = "he";
     let currentIndex = -1;
+    let galleryIndex = 0;
+    const totalWorks = figures.length;
+
+    function formatTwoDigits(num) {
+      return String(num).padStart(2, "0");
+    }
+
+    function preloadAdjacent(index) {
+      [-1, 0, 1].forEach((offset) => {
+        const idx = (index + offset + totalWorks) % totalWorks;
+        const img = figures[idx].querySelector("img");
+        if (img && img.loading === "lazy") {
+          img.loading = "eager";
+        }
+      });
+    }
+
+    function goToSlide(index) {
+      galleryIndex = (index + totalWorks) % totalWorks;
+      preloadAdjacent(galleryIndex);
+      galleryTrack.style.transform = `translate3d(-${galleryIndex * 100}%, 0, 0)`;
+      galleryCounter.textContent = `${formatTwoDigits(galleryIndex + 1)} / ${formatTwoDigits(totalWorks)}`;
+      galleryProgressBar.style.width = `${((galleryIndex + 1) / totalWorks) * 100}%`;
+      figures.forEach((fig, idx) => {
+        fig.classList.toggle("is-active", idx === galleryIndex);
+      });
+    }
 
     function setStyle(styleName) {
       document.body.setAttribute("data-style", styleName);
@@ -358,6 +414,8 @@
       langLabel.textContent = isEn ? "עברית" : "English";
       langToggle.setAttribute("aria-label", isEn ? "החלף לעברית" : "Switch to English");
       document.getElementById("contact-link").setAttribute("aria-label", isEn ? "Contact Me" : "יצירת קשר");
+      galleryPrevBtn.setAttribute("aria-label", isEn ? "Previous artwork" : "היצירה הקודמת");
+      galleryNextBtn.setAttribute("aria-label", isEn ? "Next artwork" : "היצירה הבאה");
 
       document.querySelectorAll("[data-he][data-en]").forEach((el) => {
         const val = el.getAttribute(isEn ? "data-en" : "data-he");
@@ -382,6 +440,7 @@
 
     function openLightboxAt(index) {
       currentIndex = (index + figures.length) % figures.length;
+      goToSlide(currentIndex);
       updateLightboxCaption();
       lightbox.hidden = false;
     }
@@ -392,6 +451,14 @@
       big.alt = "";
       currentIndex = -1;
     }
+
+    galleryPrevBtn.addEventListener("click", () => {
+      goToSlide(galleryIndex - 1);
+    });
+
+    galleryNextBtn.addEventListener("click", () => {
+      goToSlide(galleryIndex + 1);
+    });
 
     document.querySelector(".grid").addEventListener("click", (event) => {
       const fig = event.target.closest("figure");
@@ -422,11 +489,46 @@
     });
 
     document.addEventListener("keydown", (event) => {
-      if (lightbox.hidden) return;
-      if (event.key === "Escape") closeLightbox();
-      if (event.key === "ArrowLeft") openLightboxAt(currentIndex - 1);
-      if (event.key === "ArrowRight") openLightboxAt(currentIndex + 1);
+      if (!lightbox.hidden) {
+        if (event.key === "Escape") closeLightbox();
+        if (event.key === "ArrowLeft") openLightboxAt(currentIndex - 1);
+        if (event.key === "ArrowRight") openLightboxAt(currentIndex + 1);
+        return;
+      }
+      if (event.key === "ArrowLeft") {
+        event.preventDefault();
+        goToSlide(galleryIndex - 1);
+      } else if (event.key === "ArrowRight") {
+        event.preventDefault();
+        goToSlide(galleryIndex + 1);
+      }
     });
+
+    // Touch swipe support on mobile & tablet
+    let touchStartX = 0;
+    let touchStartY = 0;
+
+    galleryViewport.addEventListener("touchstart", (event) => {
+      if (event.touches.length !== 1) return;
+      touchStartX = event.touches[0].clientX;
+      touchStartY = event.touches[0].clientY;
+    }, { passive: true });
+
+    galleryViewport.addEventListener("touchend", (event) => {
+      if (!event.changedTouches.length) return;
+      const dx = event.changedTouches[0].clientX - touchStartX;
+      const dy = event.changedTouches[0].clientY - touchStartY;
+      if (Math.abs(dx) > 40 && Math.abs(dx) > Math.abs(dy) * 1.2) {
+        if (dx < 0) {
+          goToSlide(galleryIndex + 1);
+        } else {
+          goToSlide(galleryIndex - 1);
+        }
+      }
+    }, { passive: true });
+
+    // Initialize first slide
+    goToSlide(0);
   </script>
 </body>
 </html>
