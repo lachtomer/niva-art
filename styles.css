@@ -142,7 +142,7 @@ body[data-style="editorial"] .bio-section {
 
 h1,
 .bio {
-  max-width: 42rem;
+  max-width: 64rem;
   margin-right: auto;
   margin-left: auto;
 }
@@ -195,7 +195,7 @@ html[lang="en"] .bio-section .bio:first-of-type {
 }
 
 body[data-style="editorial"] .bio-section .bio:nth-of-type(2) {
-  max-width: 44rem;
+  max-width: 64rem;
   font-size: 1.08rem;
   line-height: 1.9;
 }
@@ -450,9 +450,9 @@ body[data-style="nocturne"] .contact-btn:hover {
 
 body[data-style="nocturne"] .bio-section {
   position: relative;
-  max-width: 54rem;
+  max-width: 73rem;
   margin: 1.5rem auto 2.5rem;
-  padding: 3rem 2.5rem 3.25rem;
+  padding: 2.75rem 3.5rem 3rem;
   background: linear-gradient(180deg, rgba(30, 26, 22, 0.75) 0%, rgba(20, 17, 15, 0.4) 100%);
   border-top: 1px solid var(--nocturne-border);
   border-bottom: 1px solid var(--nocturne-border);
