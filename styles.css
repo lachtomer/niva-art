@@ -206,178 +206,151 @@ body[data-style="editorial"] .bio-section .bio:nth-of-type(2) {
 }
 
 /* =========================================================
-   HORIZONTAL ART GALLERY (One Artwork at a Time — All Styles)
+   HORIZONTAL SCROLL PANEL WIDGET (Multiple Artworks Visible)
    ========================================================= */
 .gallery-stage {
   position: relative;
   width: 100%;
-  max-width: 88rem;
-  margin: 0 auto 4.5rem;
-  padding: 1rem 0 1.5rem;
+  max-width: 78rem;
+  margin: 0 auto 4rem;
+  padding: 0.75rem 3.75rem 1.5rem;
   user-select: none;
 }
 
 .gallery-viewport {
   width: 100%;
-  overflow: hidden;
+  overflow-x: auto;
+  overflow-y: hidden;
   direction: ltr;
+  scroll-behavior: smooth;
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+  padding: 0.75rem 0.25rem;
+}
+
+.gallery-viewport::-webkit-scrollbar {
+  display: none;
 }
 
 .grid {
   display: flex;
-  width: 100%;
+  align-items: center;
+  gap: 1.5rem;
+  width: max-content;
   margin: 0;
   padding: 0;
-  transition: transform 0.6s cubic-bezier(0.22, 1, 0.36, 1);
-  will-change: transform;
 }
 
 figure {
-  flex: 0 0 100%;
-  width: 100%;
+  flex: 0 0 auto;
   margin: 0;
-  padding: 0 5.5rem;
+  padding: 0;
   display: flex;
   flex-direction: column;
   align-items: center;
-  justify-content: center;
 }
 
-html[dir="rtl"] figure figcaption {
-  direction: rtl;
-}
-
-html[dir="ltr"] figure figcaption {
-  direction: ltr;
+/* Hide names/captions on the slider widget itself (shown when clicked in Lightbox) */
+.grid figcaption {
+  display: none;
 }
 
 .grid button {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  width: auto;
-  max-width: 100%;
-  height: 68vh;
-  min-height: 22rem;
-  max-height: 44rem;
+  display: block;
+  height: 19rem;
   padding: 0;
   border: 0;
   background: none;
   cursor: zoom-in;
+  transition: transform 0.3s cubic-bezier(0.22, 1, 0.36, 1), opacity 0.25s ease;
 }
 
 .grid img {
   display: block;
-  max-width: min(78vw, 58rem);
-  max-height: 68vh;
+  height: 100%;
   width: auto;
-  height: auto;
+  max-width: none;
   object-fit: contain;
-  transition: opacity 0.3s ease;
+  box-shadow: 0 10px 26px -8px rgba(0, 0, 0, 0.22);
 }
 
-.grid button:hover img,
-.grid button:focus-visible img {
-  opacity: 0.92;
+body[data-style="editorial"] .grid img {
+  box-shadow: none;
+  border: 1px solid rgba(30, 27, 24, 0.08);
 }
 
-/* Artwork Details Underneath Image */
-figcaption {
-  margin-top: 1.4rem;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  text-align: center;
-  gap: 0.25rem;
+body[data-style="nocturne"] .grid img {
+  border: 1px solid rgba(196, 164, 124, 0.2);
+  box-shadow: 0 12px 28px -8px rgba(0, 0, 0, 0.7);
 }
 
-figcaption .title,
-figcaption .size {
-  font-family: var(--font-serif);
-  font-weight: 500;
-  letter-spacing: 0.01em;
-  color: var(--text-primary);
-  line-height: 1.35;
+.grid button:hover,
+.grid button:focus-visible {
+  transform: translateY(-4px) scale(1.02);
 }
 
-figcaption .title {
-  font-size: 1.35rem;
-}
-
-figcaption .size {
-  font-size: 1.15rem;
-  white-space: nowrap;
-}
-
-figcaption .price {
-  font-size: 0.88rem;
-  font-weight: 500;
-  color: var(--text-primary);
-}
-
-figcaption .price[hidden] {
-  display: none;
-}
-
-/* Discreet Left & Right Edge Navigation Arrows */
+/* Left & Right Scroll Arrows on the Slider Widget */
 .gallery-nav {
   position: absolute;
-  top: 34vh;
+  top: 10.5rem;
   transform: translateY(-50%);
   z-index: 5;
   direction: ltr;
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  width: 2.75rem;
-  height: 2.75rem;
+  width: 2.6rem;
+  height: 2.6rem;
   padding: 0;
-  border: 0;
-  background: transparent;
-  color: var(--text-secondary);
-  opacity: 0.65;
+  border: 1px solid var(--border-subtle);
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.85);
+  color: var(--text-primary);
   cursor: pointer;
-  transition: opacity 0.2s ease, color 0.2s ease, transform 0.2s ease;
+  transition: background 0.2s ease, color 0.2s ease, border-color 0.2s ease, transform 0.2s ease;
 }
 
 .gallery-nav:hover,
 .gallery-nav:focus-visible {
-  opacity: 1;
-  color: var(--text-primary);
+  background: #fff;
+  border-color: var(--text-secondary);
+}
+
+body[data-style="nocturne"] .gallery-nav {
+  background: rgba(26, 23, 20, 0.9);
+  border-color: var(--nocturne-border);
+  color: var(--nocturne-text);
+}
+
+body[data-style="nocturne"] .gallery-nav:hover,
+body[data-style="nocturne"] .gallery-nav:focus-visible {
+  background: #28221D;
+  border-color: var(--nocturne-brass);
 }
 
 .gallery-prev {
-  left: 1.5rem;
+  left: 0.65rem;
 }
 
 .gallery-prev:hover {
-  transform: translateY(-50%) translateX(-2px);
+  transform: translateY(-50%) scale(1.06);
 }
 
 .gallery-next {
-  right: 1.5rem;
+  right: 0.65rem;
 }
 
 .gallery-next:hover {
-  transform: translateY(-50%) translateX(2px);
+  transform: translateY(-50%) scale(1.06);
 }
 
-/* Subtle Artwork Counter (01 / 26) & Thin Progress Indicator */
+/* Subtle Thin Scroll Progress Indicator */
 .gallery-meta {
-  max-width: 12rem;
-  margin: 1.35rem auto 0;
+  max-width: 16rem;
+  margin: 1rem auto 0;
   padding: 0 1rem;
   text-align: center;
   direction: ltr;
-}
-
-.gallery-counter {
-  font-family: var(--font-sans);
-  font-size: 0.78rem;
-  font-weight: 400;
-  letter-spacing: 0.2em;
-  color: var(--text-secondary);
-  margin-bottom: 0.55rem;
 }
 
 .gallery-progress {
@@ -390,9 +363,9 @@ figcaption .price[hidden] {
 
 .gallery-progress-bar {
   height: 100%;
-  width: 3.85%;
+  width: 15%;
   background: var(--text-primary);
-  transition: width 0.45s cubic-bezier(0.22, 1, 0.36, 1);
+  transition: width 0.25s ease;
 }
 
 /* =========================================================
@@ -649,36 +622,30 @@ body[data-style="nocturne"] .gallery-progress-bar {
   }
 
   .gallery-stage {
+    padding: 0.5rem 2.75rem 1.25rem;
     margin-bottom: 3rem;
   }
 
-  figure {
-    padding: 0 3rem;
+  .grid {
+    gap: 1rem;
   }
 
   .grid button {
-    height: 56vh;
-    min-height: 17rem;
-    max-height: 30rem;
-  }
-
-  .grid img {
-    max-width: 82vw;
-    max-height: 56vh;
+    height: 13.5rem;
   }
 
   .gallery-nav {
-    top: 28vh;
-    width: 2.25rem;
-    height: 2.25rem;
+    top: 7.5rem;
+    width: 2.15rem;
+    height: 2.15rem;
   }
 
   .gallery-prev {
-    left: 0.35rem;
+    left: 0.3rem;
   }
 
   .gallery-next {
-    right: 0.35rem;
+    right: 0.3rem;
   }
 
   #lightbox {

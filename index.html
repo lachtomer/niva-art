@@ -76,8 +76,8 @@
   </div>
 
   <section class="gallery-stage" aria-label="Artworks Gallery">
-    <button type="button" class="gallery-nav gallery-prev" id="gallery-prev" aria-label="Previous artwork">
-      <svg viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+    <button type="button" class="gallery-nav gallery-prev" id="gallery-prev" aria-label="Previous artworks">
+      <svg viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
         <polyline points="15 18 9 12 15 6"></polyline>
       </svg>
     </button>
@@ -295,14 +295,13 @@
       </div>
     </div>
 
-    <button type="button" class="gallery-nav gallery-next" id="gallery-next" aria-label="Next artwork">
-      <svg viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+    <button type="button" class="gallery-nav gallery-next" id="gallery-next" aria-label="Next artworks">
+      <svg viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
         <polyline points="9 18 15 12 9 6"></polyline>
       </svg>
     </button>
 
     <div class="gallery-meta">
-      <div class="gallery-counter" id="gallery-counter" aria-live="polite">01 / 26</div>
       <div class="gallery-progress" aria-hidden="true">
         <div class="gallery-progress-bar" id="gallery-progress-bar"></div>
       </div>
@@ -329,11 +328,9 @@
     const prevBtn = lightbox.querySelector(".lightbox-prev");
     const nextBtn = lightbox.querySelector(".lightbox-next");
     const figures = Array.from(document.querySelectorAll(".grid figure"));
-    const galleryTrack = document.getElementById("gallery-track");
     const galleryViewport = document.getElementById("gallery-viewport");
     const galleryPrevBtn = document.getElementById("gallery-prev");
     const galleryNextBtn = document.getElementById("gallery-next");
-    const galleryCounter = document.getElementById("gallery-counter");
     const galleryProgressBar = document.getElementById("gallery-progress-bar");
     const langToggle = document.getElementById("lang-toggle");
     const bioHe = document.getElementById("bio-he");
@@ -345,33 +342,38 @@
 
     let currentLang = "he";
     let currentIndex = -1;
-    let galleryIndex = 0;
-    const totalWorks = figures.length;
 
-    function formatTwoDigits(num) {
-      return String(num).padStart(2, "0");
+    // Eagerly load first 8 images so the multi-image strip fills immediately
+    figures.slice(0, 8).forEach((fig) => {
+      const img = fig.querySelector("img");
+      if (img) img.loading = "eager";
+    });
+
+    function updateScrollProgress() {
+      const maxScroll = galleryViewport.scrollWidth - galleryViewport.clientWidth;
+      if (maxScroll <= 0) {
+        galleryProgressBar.style.width = "100%";
+        return;
+      }
+      const ratio = Math.min(1, Math.max(0, galleryViewport.scrollLeft / maxScroll));
+      const minPct = 12;
+      galleryProgressBar.style.width = `${minPct + ratio * (100 - minPct)}%`;
     }
 
-    function preloadAdjacent(index) {
-      [-1, 0, 1].forEach((offset) => {
-        const idx = (index + offset + totalWorks) % totalWorks;
-        const img = figures[idx].querySelector("img");
-        if (img && img.loading === "lazy") {
-          img.loading = "eager";
-        }
-      });
+    function scrollStrip(direction) {
+      const step = Math.max(280, galleryViewport.clientWidth * 0.75);
+      const maxScroll = galleryViewport.scrollWidth - galleryViewport.clientWidth;
+      if (direction > 0 && galleryViewport.scrollLeft >= maxScroll - 8) {
+        galleryViewport.scrollTo({ left: 0, behavior: "smooth" });
+      } else if (direction < 0 && galleryViewport.scrollLeft <= 8) {
+        galleryViewport.scrollTo({ left: maxScroll, behavior: "smooth" });
+      } else {
+        galleryViewport.scrollBy({ left: direction * step, behavior: "smooth" });
+      }
     }
 
-    function goToSlide(index) {
-      galleryIndex = (index + totalWorks) % totalWorks;
-      preloadAdjacent(galleryIndex);
-      galleryTrack.style.transform = `translate3d(-${galleryIndex * 100}%, 0, 0)`;
-      galleryCounter.textContent = `${formatTwoDigits(galleryIndex + 1)} / ${formatTwoDigits(totalWorks)}`;
-      galleryProgressBar.style.width = `${((galleryIndex + 1) / totalWorks) * 100}%`;
-      figures.forEach((fig, idx) => {
-        fig.classList.toggle("is-active", idx === galleryIndex);
-      });
-    }
+    galleryViewport.addEventListener("scroll", updateScrollProgress, { passive: true });
+    window.addEventListener("resize", updateScrollProgress);
 
     function setStyle(styleName) {
       document.body.setAttribute("data-style", styleName);
@@ -414,8 +416,8 @@
       langLabel.textContent = isEn ? "עברית" : "English";
       langToggle.setAttribute("aria-label", isEn ? "החלף לעברית" : "Switch to English");
       document.getElementById("contact-link").setAttribute("aria-label", isEn ? "Contact Me" : "יצירת קשר");
-      galleryPrevBtn.setAttribute("aria-label", isEn ? "Previous artwork" : "היצירה הקודמת");
-      galleryNextBtn.setAttribute("aria-label", isEn ? "Next artwork" : "היצירה הבאה");
+      galleryPrevBtn.setAttribute("aria-label", isEn ? "Previous artworks" : "היצירות הקודמות");
+      galleryNextBtn.setAttribute("aria-label", isEn ? "Next artworks" : "היצירות הבאות");
 
       document.querySelectorAll("[data-he][data-en]").forEach((el) => {
         const val = el.getAttribute(isEn ? "data-en" : "data-he");
@@ -440,7 +442,10 @@
 
     function openLightboxAt(index) {
       currentIndex = (index + figures.length) % figures.length;
-      goToSlide(currentIndex);
+      const fig = figures[currentIndex];
+      if (fig) {
+        fig.scrollIntoView({ behavior: "smooth", inline: "center", block: "nearest" });
+      }
       updateLightboxCaption();
       lightbox.hidden = false;
     }
@@ -453,11 +458,11 @@
     }
 
     galleryPrevBtn.addEventListener("click", () => {
-      goToSlide(galleryIndex - 1);
+      scrollStrip(-1);
     });
 
     galleryNextBtn.addEventListener("click", () => {
-      goToSlide(galleryIndex + 1);
+      scrollStrip(1);
     });
 
     document.querySelector(".grid").addEventListener("click", (event) => {
@@ -497,38 +502,14 @@
       }
       if (event.key === "ArrowLeft") {
         event.preventDefault();
-        goToSlide(galleryIndex - 1);
+        scrollStrip(-1);
       } else if (event.key === "ArrowRight") {
         event.preventDefault();
-        goToSlide(galleryIndex + 1);
+        scrollStrip(1);
       }
     });
 
-    // Touch swipe support on mobile & tablet
-    let touchStartX = 0;
-    let touchStartY = 0;
-
-    galleryViewport.addEventListener("touchstart", (event) => {
-      if (event.touches.length !== 1) return;
-      touchStartX = event.touches[0].clientX;
-      touchStartY = event.touches[0].clientY;
-    }, { passive: true });
-
-    galleryViewport.addEventListener("touchend", (event) => {
-      if (!event.changedTouches.length) return;
-      const dx = event.changedTouches[0].clientX - touchStartX;
-      const dy = event.changedTouches[0].clientY - touchStartY;
-      if (Math.abs(dx) > 40 && Math.abs(dx) > Math.abs(dy) * 1.2) {
-        if (dx < 0) {
-          goToSlide(galleryIndex + 1);
-        } else {
-          goToSlide(galleryIndex - 1);
-        }
-      }
-    }, { passive: true });
-
-    // Initialize first slide
-    goToSlide(0);
+    updateScrollProgress();
   </script>
 </body>
 </html>
