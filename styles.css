@@ -337,6 +337,225 @@ figcaption .price[hidden] {
 }
 
 /* =========================================================
+   STYLE 3: "NOCTURNE VIEWING ROOM" (data-style="nocturne")
+   Chiaroscuro museum atmosphere where natural wood veneer glows
+   ========================================================= */
+body[data-style="nocturne"] {
+  --nocturne-bg: #12100E;
+  --nocturne-surface: #1A1714;
+  --nocturne-plinth: #1E1A16;
+  --nocturne-text: #EFE9E0;
+  --nocturne-body: #C9BFB2;
+  --nocturne-muted: #8C8072;
+  --nocturne-brass: #C4A47C;
+  --nocturne-border: rgba(196, 164, 124, 0.16);
+  background-color: var(--nocturne-bg);
+  background-image: radial-gradient(ellipse 80% 50% at 50% 0%, #211C17 0%, #12100E 70%);
+  color: var(--nocturne-text);
+}
+
+body[data-style="nocturne"] .top-bar {
+  max-width: 78rem;
+  padding: 1.5rem 2.5rem 0.5rem;
+}
+
+body[data-style="nocturne"] .style-switcher {
+  background: #1A1714;
+  border-color: var(--nocturne-border);
+}
+
+body[data-style="nocturne"] .style-btn {
+  color: var(--nocturne-muted);
+}
+
+body[data-style="nocturne"] .style-btn:hover {
+  color: var(--nocturne-text);
+}
+
+body[data-style="nocturne"] .style-btn.is-active {
+  background: var(--nocturne-brass);
+  color: #12100E;
+  font-weight: 500;
+}
+
+body[data-style="nocturne"] .lang-toggle,
+body[data-style="nocturne"] .contact-btn {
+  background: rgba(26, 23, 20, 0.85);
+  border-color: var(--nocturne-border);
+  color: var(--nocturne-body);
+}
+
+body[data-style="nocturne"] .lang-toggle:hover,
+body[data-style="nocturne"] .contact-btn:hover {
+  background: #241F1B;
+  border-color: var(--nocturne-brass);
+  color: var(--nocturne-text);
+}
+
+/* Dedicated Biography Entrance Wall Plaque */
+body[data-style="nocturne"] .bio-section {
+  position: relative;
+  max-width: 54rem;
+  margin: 2rem auto 6rem;
+  padding: 3.75rem 3rem 4rem;
+  background: linear-gradient(180deg, rgba(30, 26, 22, 0.75) 0%, rgba(20, 17, 15, 0.4) 100%);
+  border-top: 1px solid var(--nocturne-border);
+  border-bottom: 1px solid var(--nocturne-border);
+  box-shadow: 0 30px 60px -20px rgba(0, 0, 0, 0.6);
+}
+
+body[data-style="nocturne"] .bio-section::before {
+  content: "✦";
+  display: block;
+  margin-bottom: 0.75rem;
+  font-size: 0.75rem;
+  color: var(--nocturne-brass);
+  opacity: 0.8;
+}
+
+body[data-style="nocturne"] h1 {
+  font-size: clamp(2.75rem, 5.2vw, 4.1rem);
+  font-weight: 400;
+  letter-spacing: 0.03em;
+  color: var(--nocturne-text);
+}
+
+body[data-style="nocturne"] .bio {
+  color: var(--nocturne-body);
+  font-weight: 300;
+  line-height: 1.95;
+}
+
+body[data-style="nocturne"] .bio-section .bio:first-of-type {
+  color: var(--nocturne-brass);
+  font-weight: 400;
+}
+
+body[data-style="nocturne"] .bio-section .bio:first-of-type::after {
+  width: 3.5rem;
+  background: linear-gradient(90deg, transparent, var(--nocturne-brass), transparent);
+}
+
+body[data-style="nocturne"] .bio-section .bio:last-of-type {
+  margin-top: 1.5rem;
+  font-family: var(--font-serif);
+  font-style: italic;
+  font-size: 1.18rem;
+  color: var(--nocturne-text);
+}
+
+/* 12-Column Curated Museum Wall Grid */
+body[data-style="nocturne"] .grid {
+  counter-reset: artwork;
+  grid-template-columns: repeat(12, 1fr);
+  grid-auto-flow: dense;
+  gap: 5.5rem 3.5rem;
+  align-items: end;
+  max-width: 78rem;
+  padding: 0 2.5rem;
+  margin-bottom: 8rem;
+}
+
+body[data-style="nocturne"] figure {
+  counter-increment: artwork;
+  grid-column: span 6;
+  gap: 1.15rem;
+}
+
+/* 6 Curated Solo Centerpieces on the Wall (26 - 6 = 20 paired works, zero orphans) */
+body[data-style="nocturne"] figure:nth-child(1),
+body[data-style="nocturne"] figure:nth-child(8),
+body[data-style="nocturne"] figure:nth-child(19),
+body[data-style="nocturne"] figure:nth-child(22) {
+  grid-column: 1 / -1;
+  max-width: 44rem;
+  width: 100%;
+  margin: 1rem auto;
+}
+
+body[data-style="nocturne"] figure.wide {
+  grid-column: 1 / -1;
+  max-width: 58rem;
+  width: 100%;
+  margin: 1.5rem auto;
+}
+
+/* Recessed Shadow-Box Matting for Each Wood Veneer Piece */
+body[data-style="nocturne"] .grid button {
+  padding: 1.6rem;
+  background: radial-gradient(circle at 50% 15%, #25201B 0%, #171411 100%);
+  border: 1px solid rgba(196, 164, 124, 0.14);
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, 0.04),
+    0 24px 50px -14px rgba(0, 0, 0, 0.75);
+  transition:
+    border-color 0.4s ease,
+    box-shadow 0.4s ease,
+    transform 0.4s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+body[data-style="nocturne"] .grid img {
+  background: #12100E;
+  box-shadow:
+    0 8px 24px rgba(0, 0, 0, 0.65),
+    0 0 0 1px rgba(0, 0, 0, 0.4);
+  transition: transform 0.5s cubic-bezier(0.22, 1, 0.36, 1), filter 0.4s ease;
+}
+
+body[data-style="nocturne"] .grid button:hover,
+body[data-style="nocturne"] .grid button:focus-visible {
+  border-color: rgba(196, 164, 124, 0.38);
+  transform: translateY(-4px);
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, 0.08),
+    0 32px 64px -12px rgba(0, 0, 0, 0.88),
+    0 0 40px -10px rgba(196, 164, 124, 0.12);
+}
+
+body[data-style="nocturne"] .grid button:hover img,
+body[data-style="nocturne"] .grid button:focus-visible img {
+  transform: scale(1.012);
+  filter: brightness(1.04) contrast(1.02);
+}
+
+/* Museum Brass Plate Caption with Automatic Catalogue Number (01–26) */
+body[data-style="nocturne"] figcaption {
+  padding: 0.35rem 0.25rem 0;
+  display: flex;
+  align-items: baseline;
+  justify-content: flex-start;
+  gap: 0.75rem;
+}
+
+body[data-style="nocturne"] figcaption::before {
+  content: counter(artwork, decimal-leading-zero);
+  font-family: var(--font-serif);
+  font-size: 0.95rem;
+  font-style: italic;
+  color: var(--nocturne-brass);
+  letter-spacing: 0.05em;
+  opacity: 0.85;
+}
+
+body[data-style="nocturne"] figcaption .title {
+  font-size: 1.25rem;
+  font-weight: 400;
+  color: var(--nocturne-text);
+  letter-spacing: 0.02em;
+}
+
+body[data-style="nocturne"] figcaption .size {
+  margin-inline-start: auto;
+  font-size: 0.84rem;
+  letter-spacing: 0.04em;
+  color: var(--nocturne-muted);
+}
+
+body[data-style="nocturne"] figcaption .price {
+  color: var(--nocturne-brass);
+}
+
+/* =========================================================
    LIGHTBOX
    ========================================================= */
 #lightbox {
@@ -455,6 +674,36 @@ figcaption .price[hidden] {
   body[data-style="editorial"] figure:nth-child(15),
   body[data-style="editorial"] figure:nth-child(20) {
     margin: 0;
+  }
+
+  body[data-style="nocturne"] .top-bar {
+    padding: 1rem 1rem;
+  }
+
+  body[data-style="nocturne"] .bio-section {
+    margin: 1rem 1rem 3.5rem;
+    padding: 2.5rem 1.25rem 2.75rem;
+  }
+
+  body[data-style="nocturne"] .grid {
+    grid-template-columns: 1fr;
+    gap: 3.5rem;
+    padding: 0 1.25rem;
+    margin-bottom: 4.5rem;
+  }
+
+  body[data-style="nocturne"] figure,
+  body[data-style="nocturne"] figure.wide,
+  body[data-style="nocturne"] figure:nth-child(1),
+  body[data-style="nocturne"] figure:nth-child(8),
+  body[data-style="nocturne"] figure:nth-child(19),
+  body[data-style="nocturne"] figure:nth-child(22) {
+    grid-column: 1 / -1;
+    margin: 0;
+  }
+
+  body[data-style="nocturne"] .grid button {
+    padding: 1rem;
   }
 
   #lightbox {
